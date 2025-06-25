@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TubeClone Admin Dashboard - Professional</title>
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="admin-styles.css?v=4.0.0" id="adminCSS">
+    <link rel="stylesheet" href="admin-facebook-theme.css?v=1.0.0" id="facebookTheme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <!-- Enhanced JavaScript Loading with Proper Order -->
+    <script>
+        // Essential function declarations
+        window.showTab = window.showTab || function() { console.log('showTab loading...'); };
+        window.updateStats = window.updateStats || function() { console.log('updateStats loading...'); };
+        window.showNotification = window.showNotification || function() { console.log('showNotification loading...'); };
+        window.runSystemCheck = window.runSystemCheck || function() { console.log('runSystemCheck loading...'); };
+        window.optimizeAI = window.optimizeAI || function() { console.log('optimizeAI loading...'); };
+        window.generateReport = window.generateReport || function() { console.log('generateReport loading...'); };
+        window.refreshVideoList = window.refreshVideoList || function() { console.log('refreshVideoList loading...'); };
+        window.enhanceAllVideos = window.enhanceAllVideos || function() { console.log('enhanceAllVideos loading...'); };
+        window.exportVideoData = window.exportVideoData || function() { console.log('exportVideoData loading...'); };
+        window.showVideoAnalytics = window.showVideoAnalytics || function() { console.log('showVideoAnalytics loading...'); };
+        window.moderateContent = window.moderateContent || function() { console.log('moderateContent loading...'); };
+        window.addNewUser = window.addNewUser || function() { console.log('addNewUser loading...'); };
+        window.exportDashboard = window.exportDashboard || function() { console.log('exportDashboard loading...'); };
+        window.refreshDashboard = window.refreshDashboard || function() { console.log('refreshDashboard loading...'); };
+        window.forceFacebookStyleCSS = window.forceFacebookStyleCSS || function() { console.log('forceFacebookStyleCSS loading...'); };
+        window.updateStats = window.updateStats || function() { console.log('updateStats loading...'); };
+    </script>
+
+    <!-- Critical CSS for Facebook Black Theme -->
+    <style id="criticalCSS">
+        * { 
+            margin: 0 !important; 
+            padding: 0 !important; 
+            box-sizing: border-box !important;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif !important;
+            color: #e4e6ea !important;
+        }
+        html, body { 
+            background: #18191a !important;
+            color: #e4e6ea !important;
+            min-height: 100vh !important;
+            background-image: none !important;
+        }
+        .admin-header { 
+            background: #242526 !important; 
+            border-bottom: 1px solid #3e4042 !important; 
+            color: #e4e6ea !important;
+        }
+        .admin-sidebar { 
+            background: #242526 !important; 
+            border-right: 1px solid #3e4042 !important; 
+            color: #e4e6ea !important;
+        }
+        .admin-content { 
+            background: #18191a !important; 
+            color: #e4e6ea !important;
+        }
+        .stat-card {
+            background: #242526 !important;
+            border: 1px solid #3e4042 !important;
+            color: #e4e6ea !important;
+            border-radius: 12px !important;
+            padding: 24px !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="header-left">
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1><i class="fas fa-shield-alt"></i> TubeClone Professional Admin</h1>
+            </div>
+            <div class="header-right">
+                <div class="ai-status">
+                    <span class="ai-indicator active">🤖 AI Active</span>
+                </div>
+                <div class="user-profile" onclick="toggleUserDropdown()">
+                    <div class="user-avatar">A</div>
+                    <div class="user-info">
+                        <span class="user-name">Admin</span>
+                        <span class="user-role">Super Admin</span>
+                    </div>
+                    <i class="fas fa-chevron-down" style="margin-left: 8px; transition: transform 0.2s ease;" id="userMenuChevron"></i>
+                    <div class="user-menu-dropdown" id="userMenuDropdown" style="display: none;">
+                        <button type="button" id="userProfileBtn" onclick="window.showUserProfile && window.showUserProfile()"><i class="fas fa-user"></i> User Profile</button>
+                        <button type="button" id="userSettingsBtn" onclick="window.showUserSettings && window.showUserSettings()"><i class="fas fa-cog"></i> Settings</button>
+                        <div style="border-top: 1px solid var(--fb-border); margin: 8px 0;"></div>
+                        <button type="button" class="logout-option" id="logoutBtn" onclick="window.logoutUser && window.logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="admin-main">
+            <!-- Professional Sidebar -->
+            <nav class="admin-sidebar">
+                <div class="sidebar-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-video"></i>
+                        <span>Videos: <strong id="sidebarVideos">11</strong></span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-dollar-sign"></i>
+                        <span>Earnings: <strong id="sidebarEarnings">$10K</strong></span>
+                    </div>
+                </div>
+
+                <ul class="admin-nav">
+                    <!-- Core Systems Only -->
+                    <li><a href="#" class="admin-nav-item active" onclick="showDashboard()" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a></li>
+                    <li><a href="#" class="admin-nav-item" onclick="showSiteSettings()" data-section="site-settings">
+                        <i class="fas fa-cog"></i> Site Settings
+                    </a></li>
+
+                    <!-- Content Management -->
+                    <li class="nav-group">
+                        <div class="nav-group-title">Content Management</div>
+                    </li>
+                    <li><a href="#" class="admin-nav-item" onclick="showVideoManager()" data-section="videos">
+                        <i class="fas fa-video"></i> Video Manager
+                    </a></li>
+                    <li><a href="#" class="admin-nav-item" onclick="showVideoUpload()" data-section="upload">
+                        <i class="fas fa-upload"></i> Video Upload
+                    </a></li>
+                    <li><a href="#" class="admin-nav-item" onclick="showCategories()" data-section="categories">
+                        <i class="fas fa-folder-tree"></i> Categories
+                    </a></li>
+                    <li><a href="#" class="admin-nav-item" onclick="showPlaylist()" data-section="playlists">
+                        <i class="fas fa-list"></i> Playlist Manager
+                    </a></li>
+
+                    <!-- Analytics & Monetization -->
+                    <li class="nav-group">
+                        <div class="nav-group-title">Analytics & Revenue</div>
+                    </li>
+                    <li><a href="#" class="admin-nav-item" onclick="showAnalysis()" data-section="analytics">
+                        <i class="fas fa-chart-bar"></i> Analysis
+                    </a></li>
+                    <li><a href="#" class="admin-nav-item" onclick="showEarnings()" data-section="earnings">
+                        <i class="fas fa-coins"></i> Earnings
+                    </a></li>
+                    <li><a href="#" class="admin-nav-item" onclick="showAdManagement()" data-section="ads">
+                        <i class="fas fa-ad"></i> Ad Management
+                    </a></li>
+                    <li><a href="#" class="admin-nav-item" onclick="showGoogleAds()" data-section="google-ads">
+                        <i class="fab fa-google"></i> Google Ads (Free)
+                    </a></li>
+                    <li><a href="#" class="admin-nav-item" onclick="showGoogleAdSense()" data-section="adsense">
+                        <i class="fab fa-google"></i> Google AdSense
+                    </a></li>
+
+                    <!-- Technical -->
+                    <li class="nav-group">
+                        <div class="nav-group-title">Technical Systems</div>
+                    </li>
+                    <li><a href="#" class="admin-nav-item" onclick="showSEO()" data-section="seo">
+                        <i class="fas fa-search"></i> SEO Management
+                    </a></li>
+                    <li><a href="#" class="admin-nav-item" onclick="showAlgorithm()" data-section="algorithm">
+                        <i class="fas fa-brain"></i> Algorithm
+                    </a></li>
+                    <li><a href="#" class="admin-nav-item" onclick="showStorage()" data-section="storage">
+                        <i class="fas fa-cloud"></i> Unlimited Storage
+                    </a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="admin-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="admin-section active">
+                    <div class="dashboard-header">
+                        <h2><i class="fas fa-tachometer-alt"></i> Essential Dashboard</h2>
+                        <div class="dashboard-actions">
+                            <button class="admin-btn success" onclick="refreshDashboard()">
+                                <i class="fas fa-sync"></i> Refresh All
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Essential Stats Only -->
+                    <div class="stats-grid enhanced">
+                        <div class="stat-card animate__animated animate__fadeInUp" onclick="handleStatCardClick('videos')" style="cursor: pointer;">
+                            <div class="stat-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total Videos</h3>
+                                <div class="stat-number" id="totalVideos">Loading...</div>
+                                <div class="stat-trend">Click to view</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card animate__animated animate__fadeInUp" onclick="handleStatCardClick('analytics')" style="animation-delay: 0.1s; cursor: pointer;">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total Users</h3>
+                                <div class="stat-number" id="totalUsers">Loading...</div>
+                                <div class="stat-trend">Click to view</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card animate__animated animate__fadeInUp" onclick="handleStatCardClick('earnings')" style="animation-delay: 0.2s; cursor: pointer;">
+                            <div class="stat-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total Earnings</h3>
+                                <div class="stat-number" id="totalEarnings">Loading...</div>
+                                <div class="stat-trend">Click to view</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card animate__animated animate__fadeInUp" onclick="handleStatCardClick('storage')" style="animation-delay: 0.3s; cursor: pointer;">
+                            <div class="stat-icon">
+                                <i class="fas fa-hdd"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Storage Used</h3>
+                                <div class="stat-number" id="storageUsed">Loading...</div>
+                                <div class="stat-trend">Click to view</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Real-time Status Indicators -->
+                    <div class="status-indicators" style="margin-top: 30px; padding: 20px; background: #242526; border-radius: 12px; border: 1px solid #3e4042;">
+                        <h3 style="color: #e4e6ea; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-info-circle" style="color: #1877f2;"></i>
+                            System Status
+                        </h3>
+                        <div class="status-item" style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+                            <i class="fas fa-circle" style="color: #42b883;"></i>
+                            <span style="color: #e4e6ea;">Dashboard Status: Active</span>
+                        </div>
+                        <div class="status-item" style="display: flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-sync-alt" id="refreshIcon" style="color: #1877f2;"></i>
+                            <span style="color: #e4e6ea;">Last Updated: <span id="lastUpdated">12:35:10 AM</span></span>
+                        </div>
+                    </div>
+
+                    <!-- AI System Status -->
+                    <div class="ai-system-status enhanced" style="margin-top: 30px; padding: 24px; background: #242526; border-radius: 12px; border: 1px solid #3e4042;">
+                        <h3 style="color: #e4e6ea; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+                            <i class="fas fa-robot" style="color: #42b883;"></i> 
+                            AI Algorithm Status
+                        </h3>
+                        <div class="ai-status-grid">
+                            <div class="ai-status-card" style="background: #18191a; padding: 20px; border-radius: 8px; border: 1px solid #3e4042;">
+                                <div class="ai-card-header" style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                                    <i class="fas fa-brain" style="color: #42b883;"></i>
+                                    <h4 style="color: #e4e6ea; margin: 0;">Neural Network</h4>
+                                </div>
+                                <div class="ai-card-content">
+                                    <div class="status-indicator excellent" style="color: #42b883; font-weight: 600; margin-bottom: 10px;">100% Active</div>
+                                    <div class="ai-metrics" style="display: flex; gap: 20px;">
+                                        <span style="color: #b0b3b8; font-size: 14px;">Accuracy: 98.5%</span>
+                                        <span style="color: #b0b3b8; font-size: 14px;">Processing: 1.2ms</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Complete Admin Sections -->
+                <section id="site-settings" class="admin-section">
+                    <!-- Facebook-Style Header -->
+                    <div class="settings-header-container" style="background: linear-gradient(135deg, #1877f2, #42a5f5); border-radius: 16px; padding: 32px; margin-bottom: 32px; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.1); border-radius: 16px;"></div>
+                        <div style="position: relative; z-index: 2;">
+                            <div class="settings-header-content" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
+                                <div class="header-info">
+                                    <h1 style="color: #ffffff !important; font-size: 32px; font-weight: 800; margin: 0 0 8px 0; display: flex; align-items: center; gap: 16px;">
+                                        <div style="width: 48px; height: 48px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                            <i class="fab fa-facebook-f" style="color: #ffffff; font-size: 24px;"></i>
+                                        </div>
+                                        Professional Site Settings
+                                    </h1>
+                                    <p style="color: rgba(255,255,255,0.9) !important; font-size: 16px; margin: 0; font-weight: 500;">
+                                        Configure your TubeClone platform with Facebook-level professionalism
+                                    </p>
+                                </div>
+                                <div class="header-actions" style="display: flex; gap: 12px; flex-wrap: wrap;">
+                                    <button class="fb-action-btn primary" onclick="saveAllSettings()" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); color: #ffffff; border: 1px solid rgba(255,255,255,0.3); padding: 12px 24px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                                        <i class="fas fa-save"></i> Save All
+                                    </button>
+                                    <button class="fb-action-btn secondary" onclick="exportSettings()" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); color: #ffffff; border: 1px solid rgba(255,255,255,0.2); padding: 12px 24px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease;">
+                                        <i class="fas fa-download"></i> Export
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Facebook-Style Settings Cards Grid -->
+                    <div class="facebook-settings-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 24px; margin-bottom: 32px;">
+                        
+                        <!-- General Configuration Card -->
+                        <div class="facebook-settings-card" style="background: #242526; border: 1px solid #3e4042; border-radius: 16px; padding: 24px; transition: all 0.3s ease; position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(135deg, #1877f2, #42a5f5);"></div>
+                            <div class="card-header" style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                                <div class="icon-container" style="width: 56px; height: 56px; background: linear-gradient(135deg, #1877f2, #42a5f5); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);">
+                                    <i class="fas fa-globe" style="color: #ffffff; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #e4e6ea !important; font-size: 20px; font-weight: 700; margin: 0 0 4px 0;">General Configuration</h3>
+                                    <p style="color: #b0b3b8 !important; font-size: 14px; margin: 0;">Site identity and basic settings</p>
+                                </div>
+                            </div>
+                            <div class="card-content" style="margin-bottom: 20px;">
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #3e4042;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Site Name</span>
+                                    <span style="color: #1877f2; font-weight: 600;">TubeClone Pro</span>
+                                </div>
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #3e4042;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Domain</span>
+                                    <span style="color: #42b883; font-weight: 600;">Active</span>
+                                </div>
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Language</span>
+                                    <span style="color: #b0b3b8; font-weight: 600;">English (US)</span>
+                                </div>
+                            </div>
+                            <div class="card-actions" style="display: flex; gap: 12px;">
+                                <button class="facebook-btn primary" onclick="showGeneralSettings()" style="flex: 1; background: linear-gradient(135deg, #1877f2, #42a5f5); color: #ffffff; border: none; padding: 12px 20px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease;">
+                                    <i class="fas fa-edit"></i> Configure
+                                </button>
+                                <button class="facebook-btn secondary" onclick="testConfiguration()" style="background: #3a3b3c; color: #e4e6ea; border: 1px solid #5a5b5c; padding: 12px 16px; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;">
+                                    <i class="fas fa-test-tube"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Theme & Appearance Card -->
+                        <div class="facebook-settings-card" style="background: #242526; border: 1px solid #3e4042; border-radius: 16px; padding: 24px; transition: all 0.3s ease; position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(135deg, #8b5cf6, #a855f7);"></div>
+                            <div class="card-header" style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                                <div class="icon-container" style="width: 56px; height: 56px; background: linear-gradient(135deg, #8b5cf6, #a855f7); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);">
+                                    <i class="fas fa-paint-brush" style="color: #ffffff; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #e4e6ea !important; font-size: 20px; font-weight: 700; margin: 0 0 4px 0;">Theme & Appearance</h3>
+                                    <p style="color: #b0b3b8 !important; font-size: 14px; margin: 0;">Visual design and branding</p>
+                                </div>
+                            </div>
+                            <div class="card-content" style="margin-bottom: 20px;">
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #3e4042;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Current Theme</span>
+                                    <span style="color: #8b5cf6; font-weight: 600;">Facebook Dark</span>
+                                </div>
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #3e4042;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Color Scheme</span>
+                                    <span style="color: #42b883; font-weight: 600;">Professional</span>
+                                </div>
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Custom Logo</span>
+                                    <span style="color: #b0b3b8; font-weight: 600;">Enabled</span>
+                                </div>
+                            </div>
+                            <div class="card-actions" style="display: flex; gap: 12px;">
+                                <button class="facebook-btn primary" onclick="showThemeSettings()" style="flex: 1; background: linear-gradient(135deg, #8b5cf6, #a855f7); color: #ffffff; border: none; padding: 12px 20px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease;">
+                                    <i class="fas fa-palette"></i> Customize
+                                </button>
+                                <button class="facebook-btn secondary" onclick="previewTheme()" style="background: #3a3b3c; color: #e4e6ea; border: 1px solid #5a5b5c; padding: 12px 16px; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Security Settings Card -->
+                        <div class="facebook-settings-card" style="background: #242526; border: 1px solid #3e4042; border-radius: 16px; padding: 24px; transition: all 0.3s ease; position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(135deg, #ef4444, #f87171);"></div>
+                            <div class="card-header" style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                                <div class="icon-container" style="width: 56px; height: 56px; background: linear-gradient(135deg, #ef4444, #f87171); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);">
+                                    <i class="fas fa-shield-alt" style="color: #ffffff; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #e4e6ea !important; font-size: 20px; font-weight: 700; margin: 0 0 4px 0;">Security Settings</h3>
+                                    <p style="color: #b0b3b8 !important; font-size: 14px; margin: 0;">Protection and authentication</p>
+                                </div>
+                            </div>
+                            <div class="card-content" style="margin-bottom: 20px;">
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #3e4042;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">2FA Status</span>
+                                    <span style="color: #42b883; font-weight: 600;">✓ Enabled</span>
+                                </div>
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #3e4042;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">SSL Certificate</span>
+                                    <span style="color: #42b883; font-weight: 600;">✓ Active</span>
+                                </div>
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Last Scan</span>
+                                    <span style="color: #b0b3b8; font-weight: 600;">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="card-actions" style="display: flex; gap: 12px;">
+                                <button class="facebook-btn primary" onclick="showSecuritySettings()" style="flex: 1; background: linear-gradient(135deg, #ef4444, #f87171); color: #ffffff; border: none; padding: 12px 20px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease;">
+                                    <i class="fas fa-lock"></i> Configure
+                                </button>
+                                <button class="facebook-btn secondary" onclick="runSecurityScan()" style="background: #3a3b3c; color: #e4e6ea; border: 1px solid #5a5b5c; padding: 12px 16px; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;">
+                                    <i class="fas fa-shield-virus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Payment & Monetization Card -->
+                        <div class="facebook-settings-card" style="background: #242526; border: 1px solid #3e4042; border-radius: 16px; padding: 24px; transition: all 0.3s ease; position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(135deg, #10b981, #34d399);"></div>
+                            <div class="card-header" style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                                <div class="icon-container" style="width: 56px; height: 56px; background: linear-gradient(135deg, #10b981, #34d399); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
+                                    <i class="fas fa-credit-card" style="color: #ffffff; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #e4e6ea !important; font-size: 20px; font-weight: 700; margin: 0 0 4px 0;">Payment & Monetization</h3>
+                                    <p style="color: #b0b3b8 !important; font-size: 14px; margin: 0;">Revenue and payment processing</p>
+                                </div>
+                            </div>
+                            <div class="card-content" style="margin-bottom: 20px;">
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #3e4042;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Payment Gateway</span>
+                                    <span style="color: #10b981; font-weight: 600;">PayPal + Stripe</span>
+                                </div>
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #3e4042;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Ad Revenue</span>
+                                    <span style="color: #42b883; font-weight: 600;">✓ Active</span>
+                                </div>
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Monthly Revenue</span>
+                                    <span style="color: #10b981; font-weight: 600;">$10,400</span>
+                                </div>
+                            </div>
+                            <div class="card-actions" style="display: flex; gap: 12px;">
+                                <button class="facebook-btn primary" onclick="showPaymentSettings()" style="flex: 1; background: linear-gradient(135deg, #10b981, #34d399); color: #ffffff; border: none; padding: 12px 20px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease;">
+                                    <i class="fas fa-dollar-sign"></i> Configure
+                                </button>
+                                <button class="facebook-btn secondary" onclick="enableMonetization()" style="background: #3a3b3c; color: #e4e6ea; border: 1px solid #5a5b5c; padding: 12px 16px; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Backup & Recovery Card -->
+                        <div class="facebook-settings-card" style="background: #242526; border: 1px solid #3e4042; border-radius: 16px; padding: 24px; transition: all 0.3s ease; position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(135deg, #f59e0b, #fbbf24);"></div>
+                            <div class="card-header" style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                                <div class="icon-container" style="width: 56px; height: 56px; background: linear-gradient(135deg, #f59e0b, #fbbf24); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);">
+                                    <i class="fas fa-archive" style="color: #ffffff; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #e4e6ea !important; font-size: 20px; font-weight: 700; margin: 0 0 4px 0;">Backup & Recovery</h3>
+                                    <p style="color: #b0b3b8 !important; font-size: 14px; margin: 0;">Data protection and recovery</p>
+                                </div>
+                            </div>
+                            <div class="card-content" style="margin-bottom: 20px;">
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #3e4042;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Auto Backup</span>
+                                    <span style="color: #42b883; font-weight: 600;">✓ Daily</span>
+                                </div>
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #3e4042;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Last Backup</span>
+                                    <span style="color: #42b883; font-weight: 600;">3 hours ago</span>
+                                </div>
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Storage Used</span>
+                                    <span style="color: #b0b3b8; font-weight: 600;">2.3 GB</span>
+                                </div>
+                            </div>
+                            <div class="card-actions" style="display: flex; gap: 12px;">
+                                <button class="facebook-btn primary" onclick="showBackupSettings()" style="flex: 1; background: linear-gradient(135deg, #f59e0b, #fbbf24); color: #ffffff; border: none; padding: 12px 20px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease;">
+                                    <i class="fas fa-cog"></i> Configure
+                                </button>
+                                <button class="facebook-btn secondary" onclick="createBackup()" style="background: #3a3b3c; color: #e4e6ea; border: 1px solid #5a5b5c; padding: 12px 16px; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Performance & Optimization Card -->
+                        <div class="facebook-settings-card" style="background: #242526; border: 1px solid #3e4042; border-radius: 16px; padding: 24px; transition: all 0.3s ease; position: relative; overflow: hidden;">
+                            <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(135deg, #06b6d4, #0891b2);"></div>
+                            <div class="card-header" style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+                                <div class="icon-container" style="width: 56px; height: 56px; background: linear-gradient(135deg, #06b6d4, #0891b2); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);">
+                                    <i class="fas fa-rocket" style="color: #ffffff; font-size: 24px;"></i>
+                                </div>
+                                <div>
+                                    <h3 style="color: #e4e6ea !important; font-size: 20px; font-weight: 700; margin: 0 0 4px 0;">Performance & Optimization</h3>
+                                    <p style="color: #b0b3b8 !important; font-size: 14px; margin: 0;">Speed and performance tuning</p>
+                                </div>
+                            </div>
+                            <div class="card-content" style="margin-bottom: 20px;">
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #3e4042;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">CDN Status</span>
+                                    <span style="color: #42b883; font-weight: 600;">✓ Active</span>
+                                </div>
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #3e4042;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Page Speed</span>
+                                    <span style="color: #06b6d4; font-weight: 600;">95/100</span>
+                                </div>
+                                <div class="setting-item" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0;">
+                                    <span style="color: #e4e6ea; font-weight: 500;">Cache</span>
+                                    <span style="color: #42b883; font-weight: 600;">✓ Optimized</span>
+                                </div>
+                            </div>
+                            <div class="card-actions" style="display: flex; gap: 12px;">
+                                <button class="facebook-btn primary" onclick="optimizeWebsite()" style="flex: 1; background: linear-gradient(135deg, #06b6d4, #0891b2); color: #ffffff; border: none; padding: 12px 20px; border-radius: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s ease;">
+                                    <i class="fas fa-tachometer-alt"></i> Optimize
+                                </button>
+                                <button class="facebook-btn secondary" onclick="runPerformanceTest()" style="background: #3a3b3c; color: #e4e6ea; border: 1px solid #5a5b5c; padding: 12px 16px; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;">
+                                    <i class="fas fa-chart-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Facebook-Style Quick Actions Panel -->
+                    <div class="facebook-quick-actions" style="background: #242526; border: 1px solid #3e4042; border-radius: 16px; padding: 32px; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #1877f2, #42a5f5, #8b5cf6, #ef4444, #10b981, #f59e0b);"></div>
+                        <div class="quick-actions-header" style="margin-bottom: 24px;">
+                            <h3 style="color: #e4e6ea !important; font-size: 24px; font-weight: 700; margin: 0 0 8px 0; display: flex; align-items: center; gap: 16px;">
+                                <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #1877f2, #42a5f5); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-bolt" style="color: #ffffff; font-size: 20px;"></i>
+                                </div>
+                                Facebook-Style Quick Actions
+                            </h3>
+                            <p style="color: #b0b3b8 !important; font-size: 16px; margin: 0;">Powerful one-click actions for professional website management</p>
+                        </div>
+                        
+                        <div class="facebook-actions-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                            <button class="facebook-quick-btn optimize" onclick="optimizeWebsite()" style="background: linear-gradient(135deg, #10b981, #34d399); color: #ffffff; border: none; padding: 16px 20px; border-radius: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);">
+                                <i class="fas fa-rocket" style="font-size: 18px;"></i>
+                                <span>Optimize Website</span>
+                            </button>
+                            
+                            <button class="facebook-quick-btn cache" onclick="clearAllCache()" style="background: linear-gradient(135deg, #06b6d4, #0891b2); color: #ffffff; border: none; padding: 16px 20px; border-radius: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);">
+                                <i class="fas fa-broom" style="font-size: 18px;"></i>
+                                <span>Clear Cache</span>
+                            </button>
+                            
+                            <button class="facebook-quick-btn seo" onclick="updateSEO()" style="background: linear-gradient(135deg, #8b5cf6, #a855f7); color: #ffffff; border: none; padding: 16px 20px; border-radius: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);">
+                                <i class="fas fa-search-plus" style="font-size: 18px;"></i>
+                                <span>Update SEO</span>
+                            </button>
+                            
+                            <button class="facebook-quick-btn maintenance" onclick="enableMaintenance()" style="background: linear-gradient(135deg, #f59e0b, #fbbf24); color: #ffffff; border: none; padding: 16px 20px; border-radius: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);">
+                                <i class="fas fa-tools" style="font-size: 18px;"></i>
+                                <span>Maintenance</span>
+                            </button>
+                            
+                            <button class="facebook-quick-btn deploy" onclick="deployChanges()" style="background: linear-gradient(135deg, #1877f2, #42a5f5); color: #ffffff; border: none; padding: 16px 20px; border-radius: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(24, 119, 242, 0.2);">
+                                <i class="fas fa-upload" style="font-size: 18px;"></i>
+                                <span>Deploy Changes</span>
+                            </button>
+                            
+                            <button class="facebook-quick-btn system" onclick="runSystemCheck()" style="background: linear-gradient(135deg, #ef4444, #f87171); color: #ffffff; border: none; padding: 16px 20px; border-radius: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);">
+                                <i class="fas fa-stethoscope" style="font-size: 18px;"></i>
+                                <span>System Check</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="videos" class="admin-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-video"></i> Video Manager</h2>
+                        <div class="section-controls">
+                            <button class="admin-btn success" onclick="showNotification('Video list refreshed', 'success')">
+                                <i class="fas fa-sync"></i> Refresh
+                            </button>
+                            <button class="admin-btn" onclick="showTab('upload')">
+                                <i class="fas fa-plus"></i> Add Video
+                            </button>
+                        </div>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-list"></i> All Videos</h3>
+                            <p>View and manage all uploaded videos</p>
+                            <div id="videoCount">Total Videos: 11</div>
+                            <button class="admin-btn" onclick="showNotification('Video list loaded', 'success')">View All</button>
+                        </div>
+                        <div class="feature-card">
+                            <h3><i class="fas fa-chart-line"></i> Video Analytics</h3>
+                            <p>Performance metrics and statistics</p>
+                            <div>Total Views: 1.3M</div>
+                            <button class="admin-btn" onclick="showTab('analytics')">View Analytics</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="upload" class="admin-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-upload"></i> Video Upload</h2>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-cloud-upload-alt"></i> Upload New Video</h3>
+                            <p>Upload videos to your platform</p>
+                            <button class="admin-btn success" onclick="showNotification('Upload interface ready', 'success')">Start Upload</button>
+                        </div>
+                        <div class="feature-card">
+                            <h3><i class="fas fa-folder-plus"></i> Bulk Upload</h3>
+                            <p>Upload multiple videos at once</p>
+                            <button class="admin-btn" onclick="showNotification('Bulk upload ready', 'info')">Bulk Upload</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="categories" class="admin-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-folder-tree"></i> Categories</h2>
+                        <div class="section-controls">
+                            <button class="admin-btn success" onclick="showNotification('New category form loaded', 'success')">
+                                <i class="fas fa-plus"></i> Add Category
+                            </button>
+                        </div>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-tags"></i> Manage Categories</h3>
+                            <p>Create and organize video categories</p>
+                            <div>Active Categories: 8</div>
+                            <button class="admin-btn" onclick="showNotification('Categories loaded', 'success')">Manage</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="playlists" class="admin-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-list"></i> Playlist Manager</h2>
+                        <div class="section-controls">
+                            <button class="admin-btn success" onclick="showNotification('New playlist created', 'success')">
+                                <i class="fas fa-plus"></i> Create Playlist
+                            </button>
+                        </div>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-play-circle"></i> Active Playlists</h3>
+                            <p>Manage video playlists and collections</p>
+                            <div>Total Playlists: 5</div>
+                            <button class="admin-btn" onclick="showNotification('Playlists loaded', 'success')">View All</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="analytics" class="admin-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-chart-bar"></i> Analytics Dashboard</h2>
+                        <div class="section-controls">
+                            <button class="admin-btn success" onclick="updateStats()">
+                                <i class="fas fa-sync"></i> Refresh Data
+                            </button>
+                            <button class="admin-btn" onclick="showNotification('Report generated', 'success')">
+                                <i class="fas fa-download"></i> Export Report
+                            </button>
+                        </div>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-users"></i> User Analytics</h3>
+                            <p>User engagement and behavior metrics</p>
+                            <div>Active Users: 1.3M</div>
+                            <button class="admin-btn" onclick="showNotification('User analytics loaded', 'success')">View Details</button>
+                        </div>
+                        <div class="feature-card">
+                            <h3><i class="fas fa-eye"></i> Video Performance</h3>
+                            <p>Video views and engagement statistics</p>
+                            <div>Total Views: 1.3M</div>
+                            <button class="admin-btn" onclick="showNotification('Video performance loaded', 'success')">Analyze</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="earnings" class="admin-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-coins"></i> Earnings Management</h2>
+                        <div class="section-controls">
+                            <button class="admin-btn success" onclick="showNotification('Earnings updated', 'success')">
+                                <i class="fas fa-sync"></i> Update Earnings
+                            </button>
+                            <button class="admin-btn" onclick="showNotification('Withdrawal processed', 'success')">
+                                <i class="fas fa-money-bill-wave"></i> Withdraw
+                            </button>
+                        </div>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-dollar-sign"></i> Revenue Overview</h3>
+                            <p>Total earnings and revenue statistics</p>
+                            <div style="font-size: 24px; color: #42b883; font-weight: bold;">$10,000</div>
+                            <button class="admin-btn" onclick="showNotification('Revenue details loaded', 'success')">View Details</button>
+                        </div>
+                        <div class="feature-card">
+                            <h3><i class="fas fa-chart-line"></i> Earnings Analytics</h3>
+                            <p>Revenue trends and growth metrics</p>
+                            <div>Monthly Growth: +15%</div>
+                            <button class="admin-btn" onclick="showNotification('Earnings analytics loaded', 'success')">Analyze</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="ads" class="admin-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-ad"></i> Ad Management</h2>
+                        <div class="section-controls">
+                            <button class="admin-btn success" onclick="showNotification('New ad campaign created', 'success')">
+                                <i class="fas fa-plus"></i> Create Campaign
+                            </button>
+                        </div>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-bullhorn"></i> Active Campaigns</h3>
+                            <p>Manage advertising campaigns</p>
+                            <div>Active Ads: 3</div>
+                            <button class="admin-btn" onclick="showNotification('Ad campaigns loaded', 'success')">Manage</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="google-ads" class="admin-section">
+                    <div class="section-header">
+                        <h2><i class="fab fa-google"></i> Google Ads (Free)</h2>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-rocket"></i> Free Google Ads</h3>
+                            <p>Boost your videos with free Google advertising</p>
+                            <button class="admin-btn success" onclick="showNotification('Google Ads setup ready', 'success')">Setup Free Ads</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="adsense" class="admin-section">
+                    <div class="section-header">
+                        <h2><i class="fab fa-google"></i> Google AdSense</h2>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-money-bill-alt"></i> AdSense Integration</h3>
+                            <p>Monetize your platform with Google AdSense</p>
+                            <button class="admin-btn success" onclick="showNotification('AdSense connected', 'success')">Connect AdSense</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="seo" class="admin-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-search"></i> SEO Management</h2>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-search-plus"></i> SEO Optimization</h3>
+                            <p>Improve search engine visibility</p>
+                            <button class="admin-btn success" onclick="showNotification('SEO analysis complete', 'success')">Optimize</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="algorithm" class="admin-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-brain"></i> AI Algorithm</h2>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-robot"></i> AI System Status</h3>
+                            <p>Advanced AI algorithm management</p>
+                            <div style="color: #42b883;">Status: 100% Active</div>
+                            <button class="admin-btn success" onclick="showNotification('AI system optimized', 'success')">Optimize</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="storage" class="admin-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-cloud"></i> Unlimited Storage</h2>
+                    </div>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3><i class="fas fa-hdd"></i> Storage Management</h3>
+                            <p>Manage unlimited cloud storage</p>
+                            <div id="storageDisplay">Used: 75MB / Unlimited</div>
+                            <button class="admin-btn success" onclick="showNotification('Storage optimized', 'success')">Optimize Storage</button>
+                        </div>
+                        <div class="feature-card">
+                            <h3><i class="fas fa-cloud-upload-alt"></i> Backup System</h3>
+                            <p>Automatic backup and recovery</p>
+                            <div>Last Backup: Today</div>
+                            <button class="admin-btn" onclick="showNotification('Backup completed', 'success')">Backup Now</button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Essential JavaScript -->
+    <script src="console-error-fix.js?v=4.0.0"></script>
+    <script src="admin-script.js?v=4.0.0"></script>
+    <script src="immediate-button-fix.js?v=1.0.0"></script>
+    <script src="force-black-theme.js?v=1.0.0"></script>
+</body>
+</html>

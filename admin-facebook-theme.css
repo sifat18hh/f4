@@ -1,0 +1,878 @@
+/* Facebook Professional Admin Theme */
+:root {
+    --fb-primary: #1877f2;
+    --fb-bg: #18191a;
+    --fb-surface: #242526;
+    --fb-border: #3e4042;
+    --fb-text: #e4e6ea;
+    --fb-text-secondary: #b0b3b8;
+    --fb-success: #42b883;
+    --fb-warning: #ff9800;
+    --fb-error: #f44336;
+    --fb-radius: 12px;
+    --fb-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+* {
+    box-sizing: border-box !important;
+}
+
+body, html {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: var(--fb-bg) !important;
+    color: var(--fb-text) !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif !important;
+    line-height: 1.5 !important;
+}
+
+/* Admin Container */
+.admin-container {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+    background: var(--fb-bg) !important;
+}
+
+/* Header */
+.admin-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 12px 24px !important;
+    background: var(--fb-surface) !important;
+    border-bottom: 1px solid var(--fb-border) !important;
+    box-shadow: var(--fb-shadow) !important;
+    z-index: 1000 !important;
+}
+
+.header-left h1 {
+    color: var(--fb-text) !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+}
+
+.header-left h1 i {
+    color: var(--fb-primary) !important;
+    margin-right: 8px !important;
+}
+
+/* Main Layout */
+.admin-main {
+    display: flex !important;
+    flex: 1 !important;
+    overflow: hidden !important;
+}
+
+/* Sidebar */
+.admin-sidebar {
+    width: 280px !important;
+    background: var(--fb-surface) !important;
+    border-right: 1px solid var(--fb-border) !important;
+    padding: 20px 0 !important;
+    overflow-y: auto !important;
+    height: calc(100vh - 60px) !important;
+}
+
+.sidebar-stats {
+    padding: 0 20px 20px !important;
+    border-bottom: 1px solid var(--fb-border) !important;
+    margin-bottom: 20px !important;
+}
+
+.stat-item {
+    display: flex !important;
+    align-items: center !important;
+    padding: 8px 0 !important;
+    color: var(--fb-text-secondary) !important;
+    font-size: 13px !important;
+}
+
+.stat-item i {
+    color: var(--fb-primary) !important;
+    width: 16px !important;
+    margin-right: 12px !important;
+}
+
+/* Navigation */
+.admin-nav {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.admin-nav li {
+    margin: 0 !important;
+}
+
+.admin-nav-item {
+    display: flex !important;
+    align-items: center !important;
+    padding: 12px 20px !important;
+    color: var(--fb-text) !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    border-left: 3px solid transparent !important;
+}
+
+.admin-nav-item:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: var(--fb-primary) !important;
+}
+
+.admin-nav-item.active {
+    background: rgba(24, 119, 242, 0.1) !important;
+    border-left-color: var(--fb-primary) !important;
+    color: var(--fb-primary) !important;
+}
+
+.admin-nav-item i {
+    width: 20px !important;
+    margin-right: 12px !important;
+    font-size: 16px !important;
+}
+
+.nav-group-title {
+    padding: 16px 20px 8px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    color: var(--fb-text-secondary) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* Content Area */
+.admin-content {
+    flex: 1 !important;
+    padding: 24px !important;
+    background: var(--fb-bg) !important;
+    overflow-y: auto !important;
+    height: calc(100vh - 60px) !important;
+}
+
+.admin-section {
+    display: none !important;
+}
+
+.admin-section.active {
+    display: block !important;
+    animation: fadeIn 0.3s ease !important;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 32px !important;
+}
+
+.dashboard-header h2 {
+    color: var(--fb-text) !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+}
+
+.dashboard-header h2 i {
+    color: var(--fb-primary) !important;
+    margin-right: 12px !important;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 24px !important;
+    margin-bottom: 32px !important;
+}
+
+.stat-card {
+    background: var(--fb-surface) !important;
+    border: 1px solid var(--fb-border) !important;
+    border-radius: var(--fb-radius) !important;
+    padding: 24px !important;
+    box-shadow: var(--fb-shadow) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
+    border-color: var(--fb-primary) !important;
+}
+
+.stat-card .stat-icon {
+    width: 48px !important;
+    height: 48px !important;
+    background: var(--fb-primary) !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 16px !important;
+}
+
+.stat-card .stat-icon i {
+    color: white !important;
+    font-size: 20px !important;
+}
+
+.stat-info h3 {
+    color: var(--fb-text-secondary) !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    margin: 0 0 8px 0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.stat-number {
+    color: var(--fb-text) !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    margin: 0 0 8px 0 !important;
+    line-height: 1.2 !important;
+}
+
+.stat-trend {
+    color: var(--fb-success) !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+}
+
+/* Status Indicators */
+.status-indicators {
+    display: flex !important;
+    gap: 24px !important;
+    margin-bottom: 32px !important;
+}
+
+.status-item {
+    display: flex !important;
+    align-items: center !important;
+    color: var(--fb-text-secondary) !important;
+    font-size: 14px !important;
+}
+
+.status-item i {
+    margin-right: 8px !important;
+}
+
+/* AI System Status */
+.ai-system-status {
+    background: var(--fb-surface) !important;
+    border: 1px solid var(--fb-border) !important;
+    border-radius: var(--fb-radius) !important;
+    padding: 24px !important;
+    margin-bottom: 32px !important;
+    box-shadow: var(--fb-shadow) !important;
+}
+
+.ai-system-status h3 {
+    color: var(--fb-text) !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    margin: 0 0 20px 0 !important;
+}
+
+.ai-system-status h3 i {
+    color: var(--fb-primary) !important;
+    margin-right: 8px !important;
+}
+
+.ai-status-card {
+    background: rgba(24, 119, 242, 0.1) !important;
+    border: 1px solid var(--fb-primary) !important;
+    border-radius: 8px !important;
+    padding: 16px !important;
+}
+
+.ai-card-header {
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 12px !important;
+}
+
+.ai-card-header i {
+    color: var(--fb-primary) !important;
+    margin-right: 8px !important;
+}
+
+.ai-card-header h4 {
+    color: var(--fb-text) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+}
+
+.status-indicator.excellent {
+    color: var(--fb-success) !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+}
+
+.ai-metrics {
+    display: flex !important;
+    gap: 16px !important;
+    margin-top: 8px !important;
+}
+
+.ai-metrics span {
+    color: var(--fb-text-secondary) !important;
+    font-size: 12px !important;
+}
+
+/* Quick Actions */
+.quick-actions {
+    background: var(--fb-surface) !important;
+    border: 1px solid var(--fb-border) !important;
+    border-radius: var(--fb-radius) !important;
+    padding: 24px !important;
+    box-shadow: var(--fb-shadow) !important;
+}
+
+.quick-actions h3 {
+    color: var(--fb-text) !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    margin: 0 0 20px 0 !important;
+}
+
+.quick-actions h3 i {
+    color: var(--fb-primary) !important;
+    margin-right: 8px !important;
+}
+
+.action-categories {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+    gap: 24px !important;
+}
+
+.action-category {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid var(--fb-border) !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+}
+
+.action-category h4 {
+    color: var(--fb-text) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    margin: 0 0 16px 0 !important;
+}
+
+.action-category h4 i {
+    color: var(--fb-primary) !important;
+    margin-right: 8px !important;
+}
+
+.action-buttons {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+}
+
+.admin-btn {
+    background: var(--fb-primary) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 10px 16px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.admin-btn:hover {
+    background: #166fe5 !important;
+    transform: translateY(-1px) !important;
+}
+
+.admin-btn.success {
+    background: var(--fb-success) !important;
+}
+
+.admin-btn.success:hover {
+    background: #369870 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-main {
+        flex-direction: column !important;
+    }
+
+    .admin-sidebar {
+        width: 100% !important;
+        height: auto !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--fb-border) !important;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+
+    .action-categories {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* User Dropdown */
+.user-profile {
+    display: flex !important;
+    align-items: center !important;
+    cursor: pointer !important;
+    padding: 8px 12px !important;
+    border-radius: 8px !important;
+    transition: background 0.2s ease !important;
+    position: relative !important;
+}
+
+.user-profile:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.user-avatar {
+    width: 32px !important;
+    height: 32px !important;
+    background: var(--fb-primary) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: white !important;
+    font-weight: 600 !important;
+    margin-right: 8px !important;
+}
+
+.user-info {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.user-name {
+    color: var(--fb-text) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+}
+
+.user-role {
+    color: var(--fb-text-secondary) !important;
+    font-size: 12px !important;
+}
+
+.user-menu-dropdown {
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    background: var(--fb-surface) !important;
+    border: 1px solid var(--fb-border) !important;
+    border-radius: var(--fb-radius) !important;
+    box-shadow: var(--fb-shadow) !important;
+    min-width: 200px !important;
+    z-index: 1000 !important;
+    padding: 8px 0 !important;
+    margin-top: 8px !important;
+}
+
+.user-menu-dropdown button {
+    width: 100% !important;
+    background: none !important;
+    border: none !important;
+    color: var(--fb-text) !important;
+    padding: 12px 16px !important;
+    text-align: left !important;
+    cursor: pointer !important;
+    transition: background 0.2s ease !important;
+    font-size: 14px !important;
+}
+
+.user-menu-dropdown button:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.user-menu-dropdown button i {
+    margin-right: 12px !important;
+    width: 16px !important;
+}
+
+.logout-option {
+    color: var(--fb-error) !important;
+}
+
+/* AI Status */
+.ai-status .ai-indicator {
+    background: rgba(66, 184, 131, 0.1) !important;
+    color: var(--fb-success) !important;
+    padding: 4px 8px !important;
+    border-radius: 6px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+}
+
+/* Professional Site Settings Styling */
+.setting-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.setting-controls .admin-btn {
+    flex: 1;
+    min-width: 120px;
+    font-size: 13px;
+    padding: 8px 12px;
+}
+
+.quick-actions-panel {
+    animation: fadeInUp 0.5s ease;
+}
+
+.quick-actions-grid .admin-btn {
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.quick-actions-grid .admin-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Professional Modal Styling */
+.professional-modal {
+    animation: fadeIn 0.3s ease;
+}
+
+.professional-modal .modal-container {
+    animation: slideInUp 0.3s ease;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+.professional-modal .form-group input,
+.professional-modal .form-group textarea,
+.professional-modal .form-group select {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.professional-modal .form-group input:focus,
+.professional-modal .form-group textarea:focus,
+.professional-modal .form-group select:focus {
+    border-color: #1877f2 !important;
+    box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2) !important;
+    outline: none !important;
+}
+
+.professional-modal button {
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.professional-modal button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Theme Selection Styling */
+.theme-option:hover {
+    transform: scale(1.02);
+    transition: transform 0.2s ease;
+}
+
+/* Security Card Styling */
+.security-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.security-card:hover {
+    border-color: #1877f2;
+    transform: translateY(-2px);
+}
+
+/* SEO Tab Styling */
+.seo-tab.active {
+    background: #1877f2 !important;
+}
+
+.seo-tab:not(.active):hover {
+    background: #4a5568 !important;
+}
+
+/* Form Validation Styling */
+.form-group.error input {
+    border-color: #e74c3c !important;
+}
+
+.form-group.success input {
+    border-color: #42b883 !important;
+}
+
+/* Progress Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Professional Button Styles */
+.admin-btn.professional {
+    background: linear-gradient(135deg, #1877f2, #166fe5);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(24, 119, 242, 0.3);
+}
+
+.admin-btn.professional:hover {
+    background: linear-gradient(135deg, #166fe5, #1461cc);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(24, 119, 242, 0.4);
+}
+
+/* Settings Cards Enhancement */
+.feature-card {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.feature-card:hover {
+    border-color: #1877f2;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.feature-card h3 i {
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover h3 i {
+    transform: scale(1.1);
+}
+
+/* Loading States */
+.loading-state {
+    position: relative;
+}
+
+.loading-state::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #1877f2;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.feature-card h3 {
+    margin-bottom: 8px;
+    color: #e4e6ea !important;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.feature-card p {
+    color: #b0b3b8 !important;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Facebook-Style Settings Cards */
+.facebook-settings-card {
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+    cursor: pointer !important;
+}
+
+.facebook-settings-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6) !important;
+    border-color: rgba(24, 119, 242, 0.5) !important;
+}
+
+.facebook-settings-card .icon-container {
+    transition: all 0.3s ease !important;
+}
+
+.facebook-settings-card:hover .icon-container {
+    transform: scale(1.1) !important;
+    box-shadow: 0 8px 24px rgba(24, 119, 242, 0.4) !important;
+}
+
+/* Facebook-Style Button Animations */
+.facebook-btn {
+    position: relative !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+}
+
+.facebook-btn::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent) !important;
+    transition: left 0.5s ease !important;
+}
+
+.facebook-btn:hover::before {
+    left: 100% !important;
+}
+
+.facebook-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Facebook Quick Action Buttons */
+.facebook-quick-btn {
+    position: relative !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+}
+
+.facebook-quick-btn:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5) !important;
+}
+
+.facebook-quick-btn::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent) !important;
+    transition: left 0.6s ease !important;
+}
+
+.facebook-quick-btn:hover::after {
+    left: 100% !important;
+}
+
+/* Settings Header Animation */
+.settings-header-container {
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.settings-header-container::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -50% !important;
+    left: -50% !important;
+    width: 200% !important;
+    height: 200% !important;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent) !important;
+    animation: headerShine 3s infinite !important;
+}
+
+@keyframes headerShine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+}
+
+/* Facebook Action Button Responsive Design */
+@media (max-width: 768px) {
+    .facebook-settings-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+    
+    .facebook-actions-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+        gap: 12px !important;
+    }
+    
+    .settings-header-content {
+        flex-direction: column !important;
+        text-align: center !important;
+    }
+    
+    .header-actions {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+}
+
+/* Facebook Color Scheme Variations */
+.facebook-settings-card.primary {
+    border-left: 4px solid #1877f2 !important;
+}
+
+.facebook-settings-card.success {
+    border-left: 4px solid #42b883 !important;
+}
+
+.facebook-settings-card.warning {
+    border-left: 4px solid #f59e0b !important;
+}
+
+.facebook-settings-card.danger {
+    border-left: 4px solid #ef4444 !important;
+}
+
+.facebook-settings-card.info {
+    border-left: 4px solid #06b6d4 !important;
+}
+
+/* Enhanced Site Settings Modal Styling */
